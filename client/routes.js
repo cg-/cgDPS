@@ -53,3 +53,13 @@ Router.route('about', function () {
 
   this.render('footer', {to: 'footer'});
 });
+
+Router.route('htmldisplay', function () {
+  this.layout(Session.get('layout') || 'BootstrapLayout');
+
+  this.render('main-template');
+
+  this.render('htmldisplay', {to: 'main-area'});
+
+  this.render('footer', {to: 'footer'});
+});

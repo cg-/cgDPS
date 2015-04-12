@@ -1,5 +1,3 @@
-Articles = new Meteor.Collection("articles");
-
 Meteor.methods({
   "insertTestFiles":function(){
     Articles.insert({
@@ -8,5 +6,9 @@ Meteor.methods({
   },
   "removeTestFiles":function(){
     Articles.remove({name: "TestFile"});
+  },
+  "clear":function(){
+    Files.remove({});
+    Articles.remove({});
   }
 })

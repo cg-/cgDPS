@@ -11,6 +11,14 @@ darkest   #01061B
   background-color: #6872A0;
 }
 
+#htmlModal{
+  color: black;
+}
+
 .span-link{
   cursor:pointer;
+}
+
+.invis{
+  display: none;
 }

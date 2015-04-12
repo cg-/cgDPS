@@ -25,10 +25,10 @@
         <tr id="{{_id}}">
           <td>{{name}}</td>
           <td>
-            <span class="upload-details span-link"><u>Details</u></span>
-            <span class="upload-edit span-link"><u>Edit</u></span>
+            <span class="upload-details span-link invis"><u>Details</u></span>
+            <span class="upload-edit span-link invis"><u>Edit</u></span>
             <span class="upload-genHTML span-link"><u>Get HTML</u></span>
-            <span class="upload-genPDF span-link"><u>Get PDF</u></span>
+            <span class="upload-genPDF span-link invis"><u>Get PDF</u></span>
           </td>
           <td>
             <span class="upload-delete span-link"><u>Delete</u></span>
@@ -38,4 +38,20 @@
       </tbody>
     </table>
   </div>
+  <div id="htmlModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">HTML Output</h4>
+            </div>
+            <div class="modal-body well">
+              {{getHtml}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 </template>

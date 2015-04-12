@@ -9,3 +9,10 @@ autopublish
 insecure
 iron:router
 twbs:bootstrap
+meteorhacks:npm
+cfs:standard-packages
+cfs:filesystem
+meteorhacks:async
+
+
+npm-container
