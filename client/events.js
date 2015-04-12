@@ -35,17 +35,8 @@ Template.files.events({
               alert("Trouble uploading your file! Server said: " + err);
               return;
             }
-            var cursor = Files.find(fileObj._id);
 
-            var liveQuery = cursor.observe({
-              changed: function(newFile, oldFile) {
-                if (newFile.isUploaded()) {
-                  liveQuery.stop();
-                  // callback
-                  Meteor.call("processDoc", fileObj._id);
-                }
-              }
-            });
+            Session.set("curFile", fileObj._id);
           }); // end insert
           var oldInput = document.getElementById("file-upload-form");
           var newInput = document.createElement("input");
@@ -53,7 +44,7 @@ Template.files.events({
           newInput.id = oldInput.id;
           newInput.name = oldInput.name;
           newInput.className = oldInput.className;
-          newInput.style.cssText = oldInput.style.cssText; 
+          newInput.style.cssText = oldInput.style.cssText;
           // copy any other relevant attributes
           oldInput.parentNode.replaceChild(newInput, oldInput);
         }

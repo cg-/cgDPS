@@ -12,7 +12,7 @@ twbs:bootstrap
 meteorhacks:npm
 cfs:standard-packages
 cfs:filesystem
+cfs:ui
 meteorhacks:async
-
 
 npm-container
