@@ -1,9 +1,13 @@
 var mammoth = Meteor.npmRequire("mammoth");
 var fs = Meteor.npmRequire("fs");
+var phantomJS = Meteor.npmRequire("phantomjs");
+var spawn = Meteor.npmRequire('child_process').spawn;
+Fiber = Meteor.npmRequire('fibers');
 
 Files.on("stored", Meteor.bindEnvironment(function(file){
-  Meteor.call("processFile", file._id)
-  console.log("Finished a run.");
+  if(file.extension() === "docx"){
+    Meteor.call("processFile", file._id)
+  }
 }));
 
 Meteor.methods({
@@ -14,6 +18,9 @@ Meteor.methods({
       mammoth.convertToHtml({
         path: filepath
       }).then(function(result){
+        Fiber(function(){
+          Meteor.call("processPdf", articleId, fileId);
+        }).run();
         done(result);
       }).done()
     }).error.value;
@@ -30,6 +37,30 @@ Meteor.methods({
         return;
       }
       Meteor.call("processHtml", articleId, fileId);
+    });
+  },
+  processPdf : function(articleId, fileId){
+    fs.writeFile('/tmp/' + fileId + '.html', Articles.findOne({"_id": articleId}).html, function(err){
+      if(err){
+        console.log("ERROR: " + err);
+        return;
+      }
+      command = spawn(phantomJS.path, ['assets/app/phantomDriver.js', '/tmp/' + fileId+'.html', '/tmp/' + fileId + '.pdf']);
+      command.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+      });
+      command.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+      });
+      command.on('exit', function (code) {
+        console.log('child process exited with code ' + code);
+        fs.unlink('/tmp/' + fileId + '.html');
+        Fiber(function(){
+          PDFs.insert('/tmp/' + fileId + '.pdf', function(err, pdfFile){
+            Articles.update({"_id":articleId}, {$set : {"pdfId":pdfFile._id}});
+          });
+        }).run();
+      });
     });
   }
 });

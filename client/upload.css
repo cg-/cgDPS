@@ -18,6 +18,9 @@ darkest   #01061B
 #htmlModal{
   color: black;
 }
+#pdfModal{
+  color: black;
+}
 
 .span-link{
   cursor:pointer;

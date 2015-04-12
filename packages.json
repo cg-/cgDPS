@@ -1,3 +1,4 @@
 {
-  "mammoth" : "0.3.13"
+  "mammoth" : "0.3.13",
+  "phantomjs": "1.9.13"
 }

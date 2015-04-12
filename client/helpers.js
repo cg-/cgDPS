@@ -17,8 +17,22 @@ Template.uploadedDocsList.helpers({
     return Articles.find();
   },
   getHtml: function(){
-    if(Session.get("selectedArticle")){
-      return Articles.findOne({"_id":Session.get("selectedArticle")}).html;
+    var articleId = Session.get("selectedArticle");
+    if(articleId){
+      var html = Articles.findOne({"_id":articleId}).html;
+      if(html){
+        return html;
+      }
     }
   },
+  getPdfLink: function(){
+    var articleId = Session.get("selectedArticle");
+    if(articleId){
+      var article = Articles.findOne({"_id":articleId});
+      var pdfFile = PDFs.findOne({"_id":article.pdfId});
+      if(pdfFile){
+        return pdfFile.url();
+      }
+    }
+  }
 })

@@ -73,10 +73,11 @@ Template.uploadedDocsList.events({
   'click .upload-genPDF': function(event){
     var fileid = event.target.parentNode.parentNode.parentNode.id;
     Session.set("selectedArticle", fileid);
+    $("#pdfModal").modal("show");
   },
   'click .upload-genHTML': function(event){
     var fileid = event.target.parentNode.parentNode.parentNode.id;
     Session.set("selectedArticle", fileid);
     $("#htmlModal").modal("show");
-  }
+  },
 })
