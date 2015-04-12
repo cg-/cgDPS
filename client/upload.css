@@ -1,0 +1,16 @@
+/*
+
+bg        #303C74
+lighter   #BEC3D9
+lightest  #6872A0
+darker    #0D1848
+darkest   #01061B
+*/
+
+#upload-button{
+  background-color: #6872A0;
+}
+
+.span-link{
+  cursor:pointer;
+}

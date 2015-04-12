@@ -1,0 +1,41 @@
+<template name="files">
+  <div class="well">
+    File to upload: <br /><br />
+    <input type="file" id="file-upload-form">
+    <br />
+    <button type="button" class="btn btn-primary" id="upload-button">Upload!</button>
+  </div>
+  <div class="well upload-container">
+    {{> yield "existing-docs"}}
+  </div>
+</template>
+
+<template name="uploadedDocsList">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Uploaded Documents</th>
+          <th>Actions</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each files}}
+        <tr id="{{_id}}">
+          <td>{{name}}</td>
+          <td>
+            <span class="upload-details span-link"><u>Details</u></span>
+            <span class="upload-edit span-link"><u>Edit</u></span>
+            <span class="upload-genHTML span-link"><u>Get HTML</u></span>
+            <span class="upload-genPDF span-link"><u>Get PDF</u></span>
+          </td>
+          <td>
+            <span class="upload-delete span-link"><u>Delete</u></span>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>

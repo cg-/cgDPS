@@ -1,0 +1,116 @@
+#body{
+  background-color: #303C74;
+  font-family: 'Cabin', sans-serif;
+  color: white;
+  font-size: 16px;
+}
+
+a:link {
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:active {
+    color: orange;
+    text-decoration: underline;
+}
+
+.color-bg { color: #303C74 }	/* Main Primary color */
+.color-lighter { color: #BEC3D9 }
+.color-lightest { color: #6872A0 }
+.color-darker { color: #0D1848 }
+.color-darkest { color: #01061B }
+
+#main-area{
+  background-color: #0D1848;
+}
+
+#footer{
+  background-color: #0D1848;
+  border: 0px;
+  border-radius: 10px;
+}
+
+#footer a{
+  text-decoration: none;
+}
+
+.bootstrap-main-area{
+  margin: 60px;
+}
+
+
+/* navbar */
+.navbar-default {
+  background-color: #0D1848;
+  border-color: #0D1848;
+}
+
+.navbar-default a{
+  text-decoration: none;
+}
+
+/* title */
+.navbar-default .navbar-brand {
+  color: white;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: orange;
+}
+/* link */
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: orange;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #0D1848;
+  background-color: #BEC3D9;
+  border-radius: 10px;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #6872A0;
+  background-color: #0D1848;
+}
+
+/* mobile version */
+.navbar-default .navbar-toggle {
+  border-color: #DDD;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #DDD;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #CCC;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+    }
+}
+
+.well{
+  background-color: inherit;
+}
