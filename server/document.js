@@ -21,6 +21,8 @@ Meteor.methods({
         done(result);
       }).done()
     }).error.value;
+    html = "<html> <head> <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"> </head> <body>"
+    + html + "</body> </html>";
     Articles.update({"_id":articleId}, {$set : {"html":html}}, function(){
       Fiber(function(){
         Meteor.call("processPdf", articleId, fileId);

@@ -58,7 +58,6 @@ Template.uploadedDocsList.events({
     var fileid = event.target.parentNode.parentNode.parentNode.id;
     Session.set("selectedArticle", fileid);
     var docx = Articles.findOne({"_id":Session.get("selectedArticle")}).docxFileId;
-    Session.set("selectedArticle", null);
     var pdf = Articles.findOne({"_id":Session.get("selectedArticle")}).pdfId;
     Session.set("selectedArticle", null);
     Files.remove({"_id":docx});
