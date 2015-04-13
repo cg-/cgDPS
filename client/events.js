@@ -59,8 +59,11 @@ Template.uploadedDocsList.events({
     Session.set("selectedArticle", fileid);
     var docx = Articles.findOne({"_id":Session.get("selectedArticle")}).docxFileId;
     Session.set("selectedArticle", null);
+    var pdf = Articles.findOne({"_id":Session.get("selectedArticle")}).pdfId;
+    Session.set("selectedArticle", null);
     Files.remove({"_id":docx});
     Articles.remove({"_id":fileid});
+    PDFs.remove({"_id":pdfId});
   },
   'click .upload-details': function(event){
     var fileid = event.target.parentNode.parentNode.parentNode.id;
