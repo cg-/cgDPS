@@ -14,18 +14,18 @@ Meteor.methods({
   processHtml : function(articleId, fileId){
     var file = Files.findOne({"_id":fileId});
     var filepath = Meteor.npmRequire('fs').realpathSync( METEOR_ROOT + '/../../../cfs/files/files/files-' + fileId + '-' + file.name());
-    console.log(filepath);
     var html = Async.runSync(function(done){
       mammoth.convertToHtml({
         path: filepath
       }).then(function(result){
-        Fiber(function(){
-          Meteor.call("processPdf", articleId, fileId);
-        }).run();
         done(result);
       }).done()
     }).error.value;
-  Articles.update({"_id":articleId}, {$set : {"html":html}});
+    Articles.update({"_id":articleId}, {$set : {"html":html}}, function(){
+      Fiber(function(){
+        Meteor.call("processPdf", articleId, fileId);
+      }).run();
+    });
   },
   processFile : function(fileId){
     var file = Files.findOne({"_id": fileId});
@@ -54,11 +54,11 @@ Meteor.methods({
         console.log('stderr: ' + data);
       });
       command.on('exit', function (code) {
-        console.log('child process exited with code ' + code);
-        fs.unlink('/tmp/' + fileId + '.html');
         Fiber(function(){
           PDFs.insert('/tmp/' + fileId + '.pdf', function(err, pdfFile){
             Articles.update({"_id":articleId}, {$set : {"pdfId":pdfFile._id}});
+            fs.unlink('/tmp/' + fileId + '.html');
+            fs.unlink('/tmp/' + fileId + '.pdf');
           });
         }).run();
       });
