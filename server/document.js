@@ -13,7 +13,8 @@ Files.on("stored", Meteor.bindEnvironment(function(file){
 Meteor.methods({
   processHtml : function(articleId, fileId){
     var file = Files.findOne({"_id":fileId});
-    var filepath = process.env.PWD + "/../../doc-uploads/files-" + file._id + "-" + file.name();
+    var filepath = Meteor.npmRequire('fs').realpathSync( METEOR_ROOT + '/../../../cfs/files/files/files-' + fileId + '-' + file.name());
+    console.log(filepath);
     var html = Async.runSync(function(done){
       mammoth.convertToHtml({
         path: filepath
